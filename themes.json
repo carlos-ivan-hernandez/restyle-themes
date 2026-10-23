@@ -5,6 +5,12 @@
       "description": "Neutral dark theme for Wikipedia on a #1c1c1c background.",
       "matches": ["*://*.wikipedia.org/*"],
       "css": "themes/wikipedia-onesee.css"
+    },
+    {
+      "name": "Gmail-OneSee",
+      "description": "Neutral dark theme for Gmail on a #1c1c1c background.",
+      "matches": ["*://mail.google.com/*"],
+      "css": "themes/gmail-onesee.css"
     }
   ]
 }

@@ -4,9 +4,10 @@ Custom CSS themes for the Restyle Chrome extension.
 
 ## Themes
 
-| Name             | Sites         | Notes                                    |
-| ---------------- | ------------- | ---------------------------------------- |
-| Wikipedia-OneSee | wikipedia.org | Neutral dark theme, `#1c1c1c` background |
+| Name             | Sites           | Notes                                    |
+| ---------------- | --------------- | ---------------------------------------- |
+| Wikipedia-OneSee | wikipedia.org   | Neutral dark theme, `#1c1c1c` background |
+| Gmail-OneSee     | mail.google.com | Neutral dark theme, `#1c1c1c` background |
 
 ## How it works
 

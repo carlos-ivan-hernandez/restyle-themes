@@ -1,0 +1,10 @@
+{
+  "themes": [
+    {
+      "name": "Wikipedia-OneSee",
+      "description": "Neutral dark theme for Wikipedia on a #1c1c1c background.",
+      "matches": ["*://*.wikipedia.org/*"],
+      "css": "themes/wikipedia-onesee.css"
+    }
+  ]
+}

@@ -1,0 +1,964 @@
+/*
+ * Wikipedia-OneSee
+ * Neutral dark theme for Wikipedia (Vector 2022 / Vector legacy) on a #1c1c1c background.
+ *
+ * Most of Wikipedia is drawn from Codex design tokens (CSS variables), so the bulk of
+ * this theme just redefines those. The rest patches templates that hardcode light colors.
+ */
+
+/* ---------- Palette ---------- */
+
+:root {
+  --onesee-bg: #1c1c1c;
+  --onesee-bg-raised: #232323;
+  --onesee-bg-raised-2: #2a2a2a;
+  --onesee-bg-hover: #333333;
+  --onesee-bg-active: #3d3d3d;
+  --onesee-border: #5c5c5c;
+  --onesee-border-subtle: #444444;
+  --onesee-border-muted: #333333;
+  --onesee-text: #e3e3e3;
+  --onesee-text-strong: #f5f5f5;
+  --onesee-text-muted: #a8a8a8;
+  --onesee-link: #88a3e8;
+  --onesee-link-hover: #a6bbf5;
+  --onesee-visited: #a799cd;
+  --onesee-redlink: #fd7865;
+}
+
+/* ---------- Codex design tokens ---------- */
+
+:root {
+  color-scheme: dark !important;
+
+  --background-color-base: var(--onesee-bg) !important;
+  --background-color-base-fixed: var(--onesee-bg) !important;
+  --background-color-neutral: var(--onesee-bg-raised-2) !important;
+  --background-color-neutral-subtle: var(--onesee-bg-raised) !important;
+  --background-color-interactive: var(--onesee-bg-raised-2) !important;
+  --background-color-interactive--hover: var(--onesee-bg-hover) !important;
+  --background-color-interactive--active: var(--onesee-bg-active) !important;
+  --background-color-interactive-subtle: var(--onesee-bg-raised) !important;
+  --background-color-interactive-subtle--hover: var(--onesee-bg-raised-2) !important;
+  --background-color-interactive-subtle--active: var(--onesee-bg-hover) !important;
+  --background-color-disabled: var(--onesee-bg-active) !important;
+  --background-color-disabled-subtle: var(--onesee-bg-raised-2) !important;
+  --background-color-inverted: #f5f5f5 !important;
+  --background-color-progressive--focus: #6485d1 !important;
+  --background-color-progressive-subtle: #1b223d !important;
+  --background-color-progressive-subtle--hover: #233566 !important;
+  --background-color-progressive-subtle--active: #3056a9 !important;
+  --background-color-destructive--focus: #6485d1 !important;
+  --background-color-destructive-subtle: #3c1a13 !important;
+  --background-color-destructive-subtle--hover: #612419 !important;
+  --background-color-destructive-subtle--active: #9f3526 !important;
+  --background-color-error-subtle: #3c1a13 !important;
+  --background-color-error-subtle--hover: #612419 !important;
+  --background-color-error-subtle--active: #9f3526 !important;
+  --background-color-warning-subtle: #2d2212 !important;
+  --background-color-success-subtle: #132821 !important;
+  --background-color-notice-subtle: var(--onesee-bg-raised-2) !important;
+  --background-color-content-added: #233566 !important;
+  --background-color-content-removed: #453217 !important;
+  --background-color-target-text: #572c19 !important;
+  --background-color-backdrop-light: rgba(0, 0, 0, 0.65) !important;
+  --background-color-backdrop-dark: rgba(255, 255, 255, 0.65) !important;
+
+  --color-base: var(--onesee-text) !important;
+  --color-base--hover: var(--onesee-text-strong) !important;
+  --color-base--subtle: var(--onesee-text-muted) !important;
+  --color-emphasized: var(--onesee-text-strong) !important;
+  --color-neutral: #c8c8c8 !important;
+  --color-subtle: var(--onesee-text-muted) !important;
+  --color-placeholder: #8a8a8a !important;
+  --color-disabled: #707070 !important;
+  --color-disabled-emphasized: #777777 !important;
+  --color-inverted: var(--onesee-bg) !important;
+  --color-progressive: var(--onesee-link) !important;
+  --color-progressive--hover: var(--onesee-link-hover) !important;
+  --color-progressive--active: #b6d4fb !important;
+  --color-destructive: var(--onesee-redlink) !important;
+  --color-destructive--hover: #fea898 !important;
+  --color-destructive--active: #ffc8bd !important;
+  --color-visited: var(--onesee-visited) !important;
+  --color-visited--hover: #c5b9dd !important;
+  --color-visited--active: #d9d0e9 !important;
+  --color-destructive--visited: #c99391 !important;
+  --color-destructive--visited--hover: #dcb5b3 !important;
+  --color-destructive--visited--active: #e8cecd !important;
+  --color-error: #fd7865 !important;
+  --color-error--hover: #fea898 !important;
+  --color-error--active: #ffc8bd !important;
+  --color-warning: #ca982e !important;
+  --color-success: #2cb491 !important;
+  --color-notice: var(--onesee-text-muted) !important;
+  --color-icon-progressive: #6485d1 !important;
+  --color-content-added: #80cdb3 !important;
+  --color-content-removed: #fd7865 !important;
+
+  --border-color-base: var(--onesee-border) !important;
+  --border-color-emphasized: var(--onesee-text) !important;
+  --border-color-subtle: var(--onesee-border-subtle) !important;
+  --border-color-muted: var(--onesee-border-muted) !important;
+  --border-color-interactive--hover: #8a8a8a !important;
+  --border-color-interactive--active: #b0b0b0 !important;
+  --border-color-disabled: var(--onesee-border-subtle) !important;
+  --border-color-inverted: var(--onesee-bg) !important;
+  --border-color-progressive: #6485d1 !important;
+  --border-color-progressive--hover: #88a3e8 !important;
+  --border-color-progressive--active: #a6bbf5 !important;
+  --border-color-progressive--focus: #6485d1 !important;
+  --border-color-destructive--hover: #fd7865 !important;
+  --border-color-destructive--active: #fea898 !important;
+  --border-color-destructive--focus: #6485d1 !important;
+  --border-color-content-added: #233566 !important;
+  --border-color-content-removed: #987027 !important;
+
+  --box-shadow-color-base: var(--onesee-border) !important;
+  --box-shadow-color-progressive--focus: #6485d1 !important;
+  --box-shadow-color-progressive-selected: #88a3e8 !important;
+  --box-shadow-color-inverted: #000 !important;
+  --box-shadow-color-alpha-base: rgba(0, 0, 0, 0.87) !important;
+  --mix-blend-mode-blend: screen !important;
+}
+
+/* ---------- Page ---------- */
+
+html,
+body,
+.mw-page-container,
+.vector-header-container,
+.vector-sticky-header,
+.vector-pinnable-element,
+.vector-dropdown-content,
+.vector-menu-content,
+.mw-footer-container,
+#mw-panel,
+#mw-head,
+#content,
+#footer {
+  background-color: var(--onesee-bg) !important;
+}
+
+body,
+.mw-body,
+.mw-body-content,
+.mw-parser-output {
+  color: var(--onesee-text);
+}
+
+/* Vector legacy chrome uses gradient images for tabs and the sidebar edge. */
+.vector-menu-tabs,
+.vector-menu-tabs a,
+.vector-menu-tabs li,
+#mw-head .vector-menu-dropdown .vector-menu-heading {
+  background-image: none !important;
+}
+
+.vector-menu-tabs li,
+.vector-menu-tabs .selected {
+  background-color: var(--onesee-bg) !important;
+}
+
+/* ---------- Links ---------- */
+
+.mw-parser-output a:not(.new):not(.mw-selflink):link {
+  color: var(--onesee-link);
+}
+
+.mw-parser-output a:not(.new):not(.mw-selflink):visited {
+  color: var(--onesee-visited);
+}
+
+a.new,
+a.new:visited {
+  color: var(--onesee-redlink) !important;
+}
+
+/* ---------- Content boxes and templates ---------- */
+
+/* Hatnotes, infoboxes, sidebars */
+.mw-parser-output .hatnote:not(.notheme),
+.mw-parser-output .dablink:not(.notheme),
+.mw-parser-output .rellink:not(.notheme),
+.mw-parser-output .infobox:not(.notheme),
+.mw-parser-output .sidebar:not(.notheme),
+.mw-parser-output .quotebox:not(.notheme),
+.mw-parser-output .toccolours:not(.notheme),
+.mw-parser-output .metadata:not(.notheme),
+.mw-parser-output .side-box:not(.notheme),
+.mw-parser-output .portalbox:not(.notheme),
+.mw-parser-output .sistersitebox:not(.notheme),
+.mw-parser-output .tright:not(.notheme),
+.mw-parser-output .thumbinner,
+.mw-parser-output .mw-references-wrap,
+#toc,
+.toc {
+  color: var(--onesee-text) !important;
+  background-color: var(--onesee-bg-raised) !important;
+  border-color: var(--onesee-border-subtle) !important;
+}
+
+/* Template cells often set their own light background inline (style="background:#ddf"). */
+.mw-parser-output .infobox [style*="background"]:not(.notheme),
+.mw-parser-output .infobox-above,
+.mw-parser-output .infobox-header,
+.mw-parser-output .infobox-subheader,
+.mw-parser-output .infobox-title,
+.mw-parser-output .infobox-label,
+.mw-parser-output .infobox-image,
+.mw-parser-output .sidebar :is(th, td, div)[style*="background"]:not(.notheme),
+.mw-parser-output .sidebar-title,
+.mw-parser-output .sidebar-heading,
+.mw-parser-output .sidebar-above,
+.mw-parser-output .sidebar-pretitle {
+  color: var(--onesee-text) !important;
+  background: var(--onesee-bg-raised-2) !important;
+}
+
+/* Colored captions on population/statistics tables (caption-purple etc.) */
+.mw-parser-output caption[class*="caption-"] {
+  background: var(--onesee-bg-hover) !important;
+  color: var(--onesee-text-strong) !important;
+}
+
+.mw-parser-output .infobox-full-data > div[style] {
+  background: var(--onesee-bg-raised) !important;
+  color: var(--onesee-text) !important;
+}
+
+/* Navboxes (the collapsible link grids at the bottom of articles) */
+.mw-parser-output .navbox,
+.mw-parser-output .navbox-subgroup,
+.mw-parser-output .navbox-inner,
+.mw-parser-output .navbox-list,
+.mw-parser-output .navbox-even {
+  background-color: var(--onesee-bg-raised) !important;
+  color: var(--onesee-text) !important;
+  border-color: var(--onesee-border-subtle) !important;
+}
+
+.mw-parser-output .navbox-odd {
+  background-color: var(--onesee-bg) !important;
+}
+
+.mw-parser-output .navbox-title,
+.mw-parser-output .navbox-abovebelow,
+.mw-parser-output .navbox-group,
+.mw-parser-output .navbox-subgroup .navbox-title,
+.mw-parser-output .navbox-subgroup .navbox-group,
+.mw-parser-output .navbox th,
+.mw-parser-output .navbox-title[style],
+.mw-parser-output .navbox-group[style] {
+  background: var(--onesee-bg-hover) !important;
+  color: var(--onesee-text) !important;
+}
+
+.mw-parser-output .navbox-list,
+.mw-parser-output .navbox-group {
+  border-color: var(--onesee-bg) !important;
+}
+
+/* The little "v · t · e" links: follow the link color of wherever they sit. */
+.mw-parser-output .navbar a abbr {
+  color: inherit !important;
+}
+
+/*
+ * Tables. Not !important on purpose: tables and cells that pick their own background
+ * inline (election results, color-coded rows) keep it, and get dark text further down.
+ */
+.wikitable {
+  background-color: var(--onesee-bg-raised);
+  color: var(--onesee-text);
+}
+
+.wikitable > * > tr > th,
+.wikitable > tr > th {
+  background-color: var(--onesee-bg-hover);
+  color: var(--onesee-text-strong);
+}
+
+.wikitable,
+.wikitable > * > tr > :is(th, td),
+.wikitable > tr > :is(th, td) {
+  border-color: var(--onesee-border-subtle) !important;
+}
+
+/* Message boxes (article issues, notices, etc.) */
+.mw-parser-output :is(.ambox, .tmbox, .ombox, .cmbox, .fmbox, .imbox, .mbox-small):not(.notheme),
+.mw-parser-output .mbox-small-left,
+.mw-parser-output .side-box,
+.mw-message-box,
+.cdx-message {
+  background-color: var(--onesee-bg-raised) !important;
+  color: var(--onesee-text) !important;
+}
+
+.mw-parser-output .mbox-text,
+.mw-parser-output .mbox-image {
+  background: transparent !important;
+}
+
+/* Quotes, code, preformatted text */
+pre,
+code,
+kbd,
+samp,
+.mw-code,
+.mw-highlight,
+.mw-highlight pre {
+  background-color: var(--onesee-bg-raised-2) !important;
+  color: var(--onesee-text) !important;
+  border-color: var(--onesee-border-subtle) !important;
+}
+
+/* Syntax highlighting: lighten the darkest token colors so they read on dark. */
+.mw-highlight :is(.k, .kd, .kn, .kr, .kt, .kc, .ow) {
+  color: #c792ea !important;
+}
+.mw-highlight :is(.s, .s1, .s2, .sa, .sb, .sd, .sh, .si, .sx) {
+  color: #c3e88d !important;
+}
+.mw-highlight :is(.c, .c1, .cm, .cp, .cs, .ch) {
+  color: #9a9a9a !important;
+}
+.mw-highlight :is(.ne, .nt, .gr, .gt, .nd) {
+  color: #ff8a80 !important;
+}
+.mw-highlight :is(.m, .mi, .mf, .mh, .mo) {
+  color: #f78c6c !important;
+}
+.mw-highlight :is(.nb, .bp, .nf, .fm, .nc, .nn) {
+  color: #82aaff !important;
+}
+.mw-highlight :is(.n, .nv, .na, .o, .p, .w, .err) {
+  color: var(--onesee-text) !important;
+}
+
+/*
+ * Cells and boxes that set their own colored background inline (periodic table,
+ * election results, color-coded tables...). Those colors are almost always light,
+ * so use dark text on them, the same way Wikipedia's built-in night mode does.
+ * The boxes restyled dark above are left out.
+ */
+.mw-parser-output :where(
+    [style*="background"]:not(
+        [style*="background:transparent"],
+        [style*="background: transparent"],
+        [style*="background-color:transparent"],
+        [style*="background-color: transparent"],
+        [style*="background:inherit"],
+        [style*="background: inherit"],
+        [style*="background-color:inherit"],
+        [style*="background-color: inherit"],
+        [style*="background:none"],
+        [style*="background: none"],
+        [style*="background:var("],
+        [style*="background: var("],
+        [style*="background-color:var("],
+        [style*="background-color: var("],
+        [style*="background-image"],
+        [style*="background:;"],
+        [style*="background: ;"],
+        .notheme
+      ),
+    [bgcolor]:not(.notheme)
+  ):not(
+    :where(
+      .infobox,
+      .infobox *,
+      .sidebar,
+      .sidebar :is(th, td, div),
+      .navbox,
+      .navbox-inner,
+      .navbox-subgroup,
+      .navbox-list,
+      .navbox-even,
+      .navbox-odd,
+      .navbox-title,
+      .navbox-abovebelow,
+      .navbox-group,
+      .navbox th,
+      .hatnote,
+      .quotebox,
+      .toccolours,
+      .metadata,
+      .side-box,
+      .portalbox,
+      .sistersitebox,
+      .tright,
+      .thumbinner,
+      .ambox,
+      .tmbox,
+      .ombox,
+      .cmbox,
+      .fmbox,
+      .imbox,
+      .mbox-small
+    )
+  ) {
+  color: #202122;
+}
+
+/* An inline color:inherit would pull in the light page text, so undo it with !important. */
+.mw-parser-output :where(
+    [style*="background"]:not(
+        [style*="background:transparent"],
+        [style*="background: transparent"],
+        [style*="background-color:transparent"],
+        [style*="background-color: transparent"],
+        [style*="background:inherit"],
+        [style*="background: inherit"],
+        [style*="background-color:inherit"],
+        [style*="background-color: inherit"],
+        [style*="background:none"],
+        [style*="background: none"],
+        [style*="background:var("],
+        [style*="background: var("],
+        [style*="background-color:var("],
+        [style*="background-color: var("],
+        [style*="background-image"],
+        [style*="background:;"],
+        [style*="background: ;"],
+        .notheme
+      ),
+    [bgcolor]:not(.notheme)
+  ):not(
+    :where(
+      .infobox,
+      .infobox *,
+      .sidebar,
+      .sidebar :is(th, td, div),
+      .navbox,
+      .navbox-inner,
+      .navbox-subgroup,
+      .navbox-list,
+      .navbox-even,
+      .navbox-odd,
+      .navbox-title,
+      .navbox-abovebelow,
+      .navbox-group,
+      .navbox th,
+      .hatnote,
+      .quotebox,
+      .toccolours,
+      .metadata,
+      .side-box,
+      .portalbox,
+      .sistersitebox,
+      .tright,
+      .thumbinner,
+      .ambox,
+      .tmbox,
+      .ombox,
+      .cmbox,
+      .fmbox,
+      .imbox,
+      .mbox-small
+    )
+  ):is([style*="color:inherit"], [style*="color: inherit"]) {
+  color: #202122 !important;
+}
+
+.mw-parser-output :where(
+    [style*="background"]:not(
+        [style*="background:transparent"],
+        [style*="background: transparent"],
+        [style*="background-color:transparent"],
+        [style*="background-color: transparent"],
+        [style*="background:inherit"],
+        [style*="background: inherit"],
+        [style*="background-color:inherit"],
+        [style*="background-color: inherit"],
+        [style*="background:none"],
+        [style*="background: none"],
+        [style*="background:var("],
+        [style*="background: var("],
+        [style*="background-color:var("],
+        [style*="background-color: var("],
+        [style*="background-image"],
+        [style*="background:;"],
+        [style*="background: ;"],
+        .notheme
+      ),
+    [bgcolor]:not(.notheme)
+  ):not(
+    :where(
+      .infobox,
+      .infobox *,
+      .sidebar,
+      .sidebar :is(th, td, div),
+      .navbox,
+      .navbox-inner,
+      .navbox-subgroup,
+      .navbox-list,
+      .navbox-even,
+      .navbox-odd,
+      .navbox-title,
+      .navbox-abovebelow,
+      .navbox-group,
+      .navbox th,
+      .hatnote,
+      .quotebox,
+      .toccolours,
+      .metadata,
+      .side-box,
+      .portalbox,
+      .sistersitebox,
+      .tright,
+      .thumbinner,
+      .ambox,
+      .tmbox,
+      .ombox,
+      .cmbox,
+      .fmbox,
+      .imbox,
+      .mbox-small
+    )
+  ) :is(a:not(.new):not(.mw-selflink), .mw-collapsible-text) {
+  color: #2a4b8d !important;
+}
+
+/*
+ * Text that templates hardcode as black. Inheriting keeps it readable whether it sits
+ * on the dark page or inside one of the light cells above.
+ */
+.mw-parser-output :is(.tmp-color, .tmpl-colored-link):not(:where(
+    [style*="background"]:not(
+        [style*="background:transparent"],
+        [style*="background: transparent"],
+        [style*="background-color:transparent"],
+        [style*="background-color: transparent"],
+        [style*="background:inherit"],
+        [style*="background: inherit"],
+        [style*="background-color:inherit"],
+        [style*="background-color: inherit"],
+        [style*="background:none"],
+        [style*="background: none"],
+        [style*="background:var("],
+        [style*="background: var("],
+        [style*="background-color:var("],
+        [style*="background-color: var("],
+        [style*="background-image"],
+        [style*="background:;"],
+        [style*="background: ;"],
+        .notheme
+      ),
+    [bgcolor]:not(.notheme)
+  ):not(
+    :where(
+      .infobox,
+      .infobox *,
+      .sidebar,
+      .sidebar :is(th, td, div),
+      .navbox,
+      .navbox-inner,
+      .navbox-subgroup,
+      .navbox-list,
+      .navbox-even,
+      .navbox-odd,
+      .navbox-title,
+      .navbox-abovebelow,
+      .navbox-group,
+      .navbox th,
+      .hatnote,
+      .quotebox,
+      .toccolours,
+      .metadata,
+      .side-box,
+      .portalbox,
+      .sistersitebox,
+      .tright,
+      .thumbinner,
+      .ambox,
+      .tmbox,
+      .ombox,
+      .cmbox,
+      .fmbox,
+      .imbox,
+      .mbox-small
+    )
+  ) *),
+.mw-parser-output
+  :is(
+    [style*="color:black"],
+    [style*="color: black"],
+    [style*="color:#000"],
+    [style*="color: #000"],
+    [style*="color:#202122"],
+    [style*="color: #202122"]
+  ):not([style*="background"]):not(:where(
+    [style*="background"]:not(
+        [style*="background:transparent"],
+        [style*="background: transparent"],
+        [style*="background-color:transparent"],
+        [style*="background-color: transparent"],
+        [style*="background:inherit"],
+        [style*="background: inherit"],
+        [style*="background-color:inherit"],
+        [style*="background-color: inherit"],
+        [style*="background:none"],
+        [style*="background: none"],
+        [style*="background:var("],
+        [style*="background: var("],
+        [style*="background-color:var("],
+        [style*="background-color: var("],
+        [style*="background-image"],
+        [style*="background:;"],
+        [style*="background: ;"],
+        .notheme
+      ),
+    [bgcolor]:not(.notheme)
+  ):not(
+    :where(
+      .infobox,
+      .infobox *,
+      .sidebar,
+      .sidebar :is(th, td, div),
+      .navbox,
+      .navbox-inner,
+      .navbox-subgroup,
+      .navbox-list,
+      .navbox-even,
+      .navbox-odd,
+      .navbox-title,
+      .navbox-abovebelow,
+      .navbox-group,
+      .navbox th,
+      .hatnote,
+      .quotebox,
+      .toccolours,
+      .metadata,
+      .side-box,
+      .portalbox,
+      .sistersitebox,
+      .tright,
+      .thumbinner,
+      .ambox,
+      .tmbox,
+      .ombox,
+      .cmbox,
+      .fmbox,
+      .imbox,
+      .mbox-small
+    )
+  ) *) {
+  color: inherit !important;
+}
+
+/* Dark named colors on the dark page (e.g. "color:darkblue" in election articles). */
+.mw-parser-output
+  :is(
+    [style*="color:blue"],
+    [style*="color: blue"],
+    [style*="color:darkblue"],
+    [style*="color: darkblue"],
+    [style*="color:navy"],
+    [style*="color: navy"]
+  ):not([style*="background"]):not(:where(
+    [style*="background"]:not(
+        [style*="background:transparent"],
+        [style*="background: transparent"],
+        [style*="background-color:transparent"],
+        [style*="background-color: transparent"],
+        [style*="background:inherit"],
+        [style*="background: inherit"],
+        [style*="background-color:inherit"],
+        [style*="background-color: inherit"],
+        [style*="background:none"],
+        [style*="background: none"],
+        [style*="background:var("],
+        [style*="background: var("],
+        [style*="background-color:var("],
+        [style*="background-color: var("],
+        [style*="background-image"],
+        [style*="background:;"],
+        [style*="background: ;"],
+        .notheme
+      ),
+    [bgcolor]:not(.notheme)
+  ):not(
+    :where(
+      .infobox,
+      .infobox *,
+      .sidebar,
+      .sidebar :is(th, td, div),
+      .navbox,
+      .navbox-inner,
+      .navbox-subgroup,
+      .navbox-list,
+      .navbox-even,
+      .navbox-odd,
+      .navbox-title,
+      .navbox-abovebelow,
+      .navbox-group,
+      .navbox th,
+      .hatnote,
+      .quotebox,
+      .toccolours,
+      .metadata,
+      .side-box,
+      .portalbox,
+      .sistersitebox,
+      .tright,
+      .thumbinner,
+      .ambox,
+      .tmbox,
+      .ombox,
+      .cmbox,
+      .fmbox,
+      .imbox,
+      .mbox-small
+    )
+  ) *) {
+  color: #8fb0ff !important;
+}
+
+.mw-parser-output
+  :is(
+    [style*="color:red"],
+    [style*="color: red"],
+    [style*="color:darkred"],
+    [style*="color: darkred"],
+    [style*="color:maroon"],
+    [style*="color: maroon"]
+  ):not([style*="background"]):not(:where(
+    [style*="background"]:not(
+        [style*="background:transparent"],
+        [style*="background: transparent"],
+        [style*="background-color:transparent"],
+        [style*="background-color: transparent"],
+        [style*="background:inherit"],
+        [style*="background: inherit"],
+        [style*="background-color:inherit"],
+        [style*="background-color: inherit"],
+        [style*="background:none"],
+        [style*="background: none"],
+        [style*="background:var("],
+        [style*="background: var("],
+        [style*="background-color:var("],
+        [style*="background-color: var("],
+        [style*="background-image"],
+        [style*="background:;"],
+        [style*="background: ;"],
+        .notheme
+      ),
+    [bgcolor]:not(.notheme)
+  ):not(
+    :where(
+      .infobox,
+      .infobox *,
+      .sidebar,
+      .sidebar :is(th, td, div),
+      .navbox,
+      .navbox-inner,
+      .navbox-subgroup,
+      .navbox-list,
+      .navbox-even,
+      .navbox-odd,
+      .navbox-title,
+      .navbox-abovebelow,
+      .navbox-group,
+      .navbox th,
+      .hatnote,
+      .quotebox,
+      .toccolours,
+      .metadata,
+      .side-box,
+      .portalbox,
+      .sistersitebox,
+      .tright,
+      .thumbinner,
+      .ambox,
+      .tmbox,
+      .ombox,
+      .cmbox,
+      .fmbox,
+      .imbox,
+      .mbox-small
+    )
+  ) *) {
+  color: #ff8a80 !important;
+}
+
+.mw-parser-output
+  :is([style*="color:green"], [style*="color: green"], [style*="color:darkgreen"], [style*="color: darkgreen"]):not(
+    [style*="background"]
+  ):not(:where(
+    [style*="background"]:not(
+        [style*="background:transparent"],
+        [style*="background: transparent"],
+        [style*="background-color:transparent"],
+        [style*="background-color: transparent"],
+        [style*="background:inherit"],
+        [style*="background: inherit"],
+        [style*="background-color:inherit"],
+        [style*="background-color: inherit"],
+        [style*="background:none"],
+        [style*="background: none"],
+        [style*="background:var("],
+        [style*="background: var("],
+        [style*="background-color:var("],
+        [style*="background-color: var("],
+        [style*="background-image"],
+        [style*="background:;"],
+        [style*="background: ;"],
+        .notheme
+      ),
+    [bgcolor]:not(.notheme)
+  ):not(
+    :where(
+      .infobox,
+      .infobox *,
+      .sidebar,
+      .sidebar :is(th, td, div),
+      .navbox,
+      .navbox-inner,
+      .navbox-subgroup,
+      .navbox-list,
+      .navbox-even,
+      .navbox-odd,
+      .navbox-title,
+      .navbox-abovebelow,
+      .navbox-group,
+      .navbox th,
+      .hatnote,
+      .quotebox,
+      .toccolours,
+      .metadata,
+      .side-box,
+      .portalbox,
+      .sistersitebox,
+      .tright,
+      .thumbinner,
+      .ambox,
+      .tmbox,
+      .ombox,
+      .cmbox,
+      .fmbox,
+      .imbox,
+      .mbox-small
+    )
+  ) *) {
+  color: #7fd88f !important;
+}
+
+/* Main page panels */
+.mw-parser-output #mp-topbanner,
+.mw-parser-output #mp-banner {
+  background-color: var(--onesee-bg-raised) !important;
+  border-color: var(--onesee-border-subtle) !important;
+}
+.mw-parser-output #mp-left,
+.mw-parser-output #mp-right,
+.mw-parser-output #mp-middle,
+.mw-parser-output #mp-lower,
+.mw-parser-output #mp-bottom {
+  background-color: var(--onesee-bg-raised) !important;
+  border-color: var(--onesee-border-subtle) !important;
+}
+.mw-parser-output #mp-left .mp-h2,
+.mw-parser-output #mp-right .mp-h2,
+.mw-parser-output #mp-middle .mp-h2,
+.mw-parser-output #mp-lower .mp-h2,
+.mw-parser-output #mp-bottom .mp-h2 {
+  background-color: var(--onesee-bg-hover) !important;
+  border-color: var(--onesee-border-subtle) !important;
+  color: var(--onesee-text-strong) !important;
+}
+
+/* Fundraising banners draw straight onto the page background with grey text. */
+#centralNotice [class*="frb"]:not(a):not(button):not(input):not(label) {
+  color: var(--onesee-text-muted) !important;
+}
+
+#centralNotice :is(a, button)[class*="frb"][class*="link"] {
+  color: var(--onesee-link) !important;
+}
+
+/* ---------- Images ---------- */
+
+/* Black-on-transparent images (diagrams, formulas, icons) are flipped so they show on dark. */
+.skin-invert,
+.skin-invert-image img,
+.mwe-math-fallback-image-inline,
+.mwe-math-fallback-image-display,
+.mw-parser-output .sister-inline-image img[src*="Wiktionary-logo"],
+.mw-parser-output .sistersitebox img[src*="Wiktionary-logo"],
+.oo-ui-iconElement-icon:not(.oo-ui-image-progressive):not(.oo-ui-image-destructive):not(.oo-ui-checkboxInputWidget-checkIcon):not(.oo-ui-image-invert):not(.mw-no-invert),
+.oo-ui-indicatorElement-indicator {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+/* Give transparent article images a light backdrop so black line art stays visible. */
+.mw-parser-output figure img,
+.mw-parser-output .thumbimage,
+.mw-parser-output .infobox-image img {
+  background-color: #e8e8e8;
+}
+
+/* Thumbnail captions and frames */
+.mw-parser-output figure[typeof~="mw:File/Thumb"],
+.mw-parser-output figure[typeof~="mw:File/Frame"],
+.mw-parser-output figure[typeof~="mw:File/Thumb"] > figcaption,
+.mw-parser-output figure[typeof~="mw:File/Frame"] > figcaption,
+.mw-parser-output .thumbcaption {
+  background-color: var(--onesee-bg-raised) !important;
+  border-color: var(--onesee-border-subtle) !important;
+  color: var(--onesee-text) !important;
+}
+
+/* The "enlarge" icon on thumbnails */
+.mw-parser-output figure > .mw-file-description::after,
+.mw-parser-output figure > .mw-file-magnify::after {
+  filter: invert(1);
+}
+
+/* ---------- Search, inputs, popups ---------- */
+
+input,
+textarea,
+select,
+.cdx-text-input__input,
+.cdx-search-input__input-wrapper,
+.cdx-menu,
+.cdx-typeahead-search .cdx-menu,
+.cdx-card,
+.mwe-popups,
+.mwe-popups .mwe-popups-extract,
+.mwe-popups-container,
+.vector-typeahead-search-container .cdx-menu {
+  background-color: var(--onesee-bg-raised) !important;
+  color: var(--onesee-text) !important;
+  border-color: var(--onesee-border-subtle) !important;
+}
+
+/* Codex default buttons hardcode a light background. */
+.cdx-button:not(.cdx-button--weight-quiet):not(.cdx-button--weight-primary) {
+  background-color: var(--onesee-bg-raised-2) !important;
+  color: var(--onesee-text) !important;
+  border-color: var(--onesee-border-subtle) !important;
+}
+
+.cdx-button:not(.cdx-button--weight-quiet):not(.cdx-button--weight-primary):hover {
+  background-color: var(--onesee-bg-hover) !important;
+}
+
+/* The fade at the bottom of page-preview popups uses a white gradient. */
+.mwe-popups .mwe-popups-extract::after {
+  background-image: linear-gradient(to right, transparent, var(--onesee-bg-raised) 50%) !important;
+}
+
+/* ---------- Scrollbars ---------- */
+
+html {
+  scrollbar-color: #4a4a4a var(--onesee-bg);
+}
+
+/* ---------- Selection ---------- */
+
+::selection {
+  background: #3056a9;
+  color: #fff;
+}

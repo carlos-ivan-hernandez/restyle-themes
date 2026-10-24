@@ -159,6 +159,46 @@ input[name="q"]::placeholder {
   background-color: transparent !important;
 }
 
+/*
+ * Filter chips under the search box (From, Any time, Has attachment, ...) live in the
+ * toolbar and are white by default. They keep Gmail's grey outline, with no fill.
+ */
+:is(.G-atb, [gh="tm"]) :is(.T-I, [role="button"], button):not(.T-I-atl) {
+  background-color: transparent !important;
+  color: var(--onesee-text) !important;
+}
+
+:is(.G-atb, [gh="tm"]) :is(.T-I, [role="button"], button):not(.T-I-atl):hover {
+  background-color: var(--onesee-bg-hover) !important;
+}
+
+/* "Upgrade" (Google One) button: light blue by default, so it gets the Compose colors. */
+header
+  :is(
+    a[href*="one.google.com"],
+    a[href*="upgrade" i],
+    [aria-label*="Upgrade"]
+  ) {
+  background-color: var(--onesee-accent-bg) !important;
+  color: var(--onesee-accent-text) !important;
+  box-shadow: none !important;
+}
+
+header
+  :is(
+    a[href*="one.google.com"],
+    a[href*="upgrade" i],
+    [aria-label*="Upgrade"]
+  ):hover {
+  background-color: var(--onesee-accent-bg-hover) !important;
+}
+
+header
+  :is(a[href*="one.google.com"], a[href*="upgrade" i], [aria-label*="Upgrade"])
+  * {
+  color: inherit !important;
+}
+
 /* ---------- Left navigation ---------- */
 
 /* Compose button */
@@ -369,6 +409,21 @@ input[name="q"]::placeholder {
   background-color: var(--onesee-bg-raised-2) !important;
   border-color: var(--onesee-border-subtle) !important;
   color: var(--onesee-text) !important;
+}
+
+/* The notice above the Spam and Trash lists ("...will be automatically deleted") */
+.ya {
+  background-color: var(--onesee-bg-raised-2) !important;
+  color: var(--onesee-text) !important;
+  border-color: var(--onesee-border-muted) !important;
+}
+
+.ya .x2 {
+  color: var(--onesee-text) !important;
+}
+
+.ya [role="link"] {
+  color: var(--onesee-link) !important;
 }
 
 /* "Older/newer" and empty-folder messages, storage footer */
@@ -945,6 +1000,7 @@ a,
   .asa,
   .T-I-J3,
   .G-tF .T-Jo,
+  .G-asx,
 
   /* Inbox tab icons */
   .aKe-aLe,

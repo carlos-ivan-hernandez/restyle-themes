@@ -88,7 +88,16 @@ header,
 .G-atb,
 .D.E.G-atb,
 .brC-aT5-aOt-Jw,
-.bAw {
+.bAw,
+.aia,
+.ao9,
+.apN,
+.aHU,
+.hx,
+.Bk,
+.gA,
+.gB,
+.acV {
   background-color: var(--onesee-bg) !important;
   background-image: none !important;
 }
@@ -138,24 +147,6 @@ input[name="q"] {
 header input::placeholder,
 input[name="q"]::placeholder {
   color: var(--onesee-text-muted) !important;
-}
-
-/* Header icons (menu, search, filters, help, settings, apps grid) are grey SVGs. */
-header [role="button"] svg,
-header button svg,
-header a[role="button"] svg,
-header form svg,
-#gb [role="button"] svg,
-#gb button svg {
-  filter: invert(1) hue-rotate(180deg);
-}
-
-/* Support / settings / side-panel buttons that Gmail draws as image icons */
-header .gb_Kc,
-.FH,
-.zo,
-.aoH .aT5-aOt-I-JX-Jw {
-  filter: invert(1) hue-rotate(180deg);
 }
 
 /* Search results summary and filter chips under the search box */
@@ -237,23 +228,6 @@ header .gb_Kc,
   color: var(--onesee-text-strong) !important;
 }
 
-/* Nav icons and the app switcher on the far left (Mail, Chat, Meet) */
-.qj,
-.aHS-bnt,
-.aHS-bnu,
-.aHS-bnq,
-.aHS-bnv,
-.aHS-bnw,
-.aHS-aHO,
-.aHS-bu1,
-.aHS-bu2,
-.akV,
-.Xa .Xb,
-.Yh,
-.aeN .T-I-J3 {
-  filter: invert(1) hue-rotate(180deg);
-}
-
 /* ---------- Toolbar ---------- */
 
 .G-atb,
@@ -267,25 +241,19 @@ header .gb_Kc,
   color: var(--onesee-text-muted) !important;
 }
 
-/* Icon buttons: archive, delete, refresh, more, older/newer, select-all checkbox */
-.asa,
-.T-I-J3,
-.G-tF .T-Jo,
-.amJ,
-.aqJ,
-.G-Ni .T-I .asa {
-  filter: invert(1) hue-rotate(180deg);
-}
-
 .T-I:hover,
 .T-I-JW,
 .T-I-Kq {
   background-color: var(--onesee-bg-hover) !important;
 }
 
-/* Generic buttons (Reply, Forward, dialogs). The blue primary buttons (.T-atl) are left alone. */
-.T-I.J-J5-Ji:not(.T-I-atl):not(.T-I-KE):not(.T-I-ax7):not(.aoO),
-.T-I-ax7,
+/*
+ * Generic buttons (dialogs, settings). The blue primary buttons (.T-I-atl) are left alone,
+ * and so are the icon buttons in toolbars and message headers, which have no fill of their own.
+ */
+:is(.T-I.J-J5-Ji:not(.T-I-atl, .T-I-KE, .aoO), .T-I-ax7):not(
+    :is(.G-atb, .iH, .adn, .ha, [gh="tm"], [gh="mtb"]) *
+  ),
 .ams {
   background-color: var(--onesee-bg-raised-2) !important;
   color: var(--onesee-text) !important;
@@ -323,12 +291,6 @@ header .gb_Kc,
 .aAy.aIf-aLe .aKz,
 .aAy[aria-selected="true"] .aKz {
   color: var(--onesee-link) !important;
-}
-
-.aKe-aLe,
-.aAy .aKu-aKy,
-.aKu-aKy {
-  filter: invert(1) hue-rotate(180deg);
 }
 
 /* ---------- Message list ---------- */
@@ -398,20 +360,6 @@ header .gb_Kc,
 .zA.zE .zF,
 .zA.zE .xW span {
   color: var(--onesee-text-strong) !important;
-}
-
-/* Checkbox, star, importance marker, hover actions, attachment chips */
-.zA .oZ-jc,
-.zA .T-Jo,
-.zA .T-KT:not(.T-KT-Jp),
-.zA .pG:not(.pH-ax9),
-.zA .bqX,
-.zA .brq,
-.zA .bru,
-.zA .brv,
-.zA .bqY > li,
-.zA .aKS {
-  filter: invert(1) hue-rotate(180deg);
 }
 
 /* Attachment chips under a row */
@@ -508,19 +456,6 @@ header .gb_Kc,
 .ky span {
   background-color: var(--onesee-bg-raised-2) !important;
   color: var(--onesee-text) !important;
-}
-
-/* Header icons (star, reply, more) */
-.adn .T-I-J3,
-.adn .T-KT:not(.T-KT-Jp),
-.adn .aqx,
-.adn .asa,
-.ha .asa,
-.ajz,
-.ajy,
-.hG,
-.bjy {
-  filter: invert(1) hue-rotate(180deg);
 }
 
 /* Label chips next to the subject keep their own colors; only the default grey ones change. */
@@ -741,13 +676,6 @@ header .gb_Kc,
   color: var(--onesee-text) !important;
 }
 
-.Ha,
-.Hl,
-.Hq,
-.Hk {
-  filter: invert(1) hue-rotate(180deg);
-}
-
 /* To / Cc / Subject fields */
 .aoD,
 .aoD input,
@@ -819,22 +747,6 @@ header .gb_Kc,
   border-color: var(--onesee-border-subtle) !important;
 }
 
-.btC .J-Z-I,
-.btC .a1,
-.btC .aA7,
-.btC .og,
-.btC .aaA,
-.btC .wG,
-.btC .J-J5-Ji:not(.aoO):not(.T-I-atl):not(.T-I-ax7) .J-JN-M-I-Jm,
-.J-Z .J-Z-I-Jm,
-.aX0 .e5,
-.oh,
-.oG,
-.aBc,
-.og.T-I-J3 {
-  filter: invert(1) hue-rotate(180deg);
-}
-
 /* ---------- Menus, popups, dialogs ---------- */
 
 .J-M,
@@ -894,13 +806,6 @@ header .gb_Kc,
 .J-Kh,
 .J-awr {
   border-color: var(--onesee-border-subtle) !important;
-}
-
-.J-N-JX.aDE,
-.J-N .J-N-JX,
-.J-Ks-KO,
-.J-Ks-KO-Jw {
-  filter: invert(1) hue-rotate(180deg);
 }
 
 /* Dialog titles and close buttons */
@@ -998,11 +903,142 @@ a,
   border-color: var(--onesee-border-muted) !important;
 }
 
-/* The add-on icons themselves are colorful, so leave them; only the "+" and arrows flip. */
-.bse-bvF-I-aCk,
-.brC-aT5-aOt-bsf-Jw,
-.brC-bsf-aT5-aOt {
+/* ---------- Icons ---------- */
+
+/*
+ * Gmail draws most icons dark grey (#444746), so they're inverted to light grey. The
+ * hue-rotate keeps colored icons (stars, label dots) close to their own hue.
+ *
+ * All the inverted elements are listed here once, so the guard below can see every one.
+ */
+:is(
+  /* Google bar: menu, search, filters, help, settings, apps grid */
+  header [role="button"] svg,
+  header button svg,
+  header a[role="button"] svg,
+  header form svg,
+  #gb [role="button"] svg,
+  #gb button svg,
+  header .gb_Kc,
+  .FH,
+  .zo,
+  .aoH .aT5-aOt-I-JX-Jw,
+
+  /* Left nav icons and the app switcher (Mail, Chat, Meet) */
+  .qj,
+  .akV,
+  .Xa .Xb,
+  .Yh,
+  .aeN .T-I-J3,
+
+  /* Toolbar buttons: archive, delete, refresh, more, older/newer, select-all checkbox */
+  .asa,
+  .T-I-J3,
+  .G-tF .T-Jo,
+
+  /* Inbox tab icons */
+  .aKe-aLe,
+  .aKu-aKy,
+
+  /* Message rows: checkbox, star, importance marker, hover actions, attachment chips */
+  .zA .oZ-jc,
+  .zA .T-Jo,
+  .zA .T-KT:not(.T-KT-Jp),
+  .zA .pG:not(.pH-ax9),
+  .zA .bqX,
+  .zA .brq,
+  .zA .bru,
+  .zA .brv,
+  .zA .aKS,
+
+  /* Conversation header: star, reply, more */
+  .adn .T-KT:not(.T-KT-Jp),
+  .adn .aqx,
+  .ajz,
+  .ajy,
+  .hG,
+  .bjy,
+
+  /* Compose window: title-bar buttons, formatting bar, bottom toolbar */
+  .Ha,
+  .Hl,
+  .Hq,
+  .Hk,
+  .btC .J-Z-I,
+  .btC .a1,
+  .btC .aA7,
+  .btC .og,
+  .btC .aaA,
+  .btC .wG,
+  .btC .J-J5-Ji:not(.aoO, .T-I-atl, .T-I-ax7) .J-JN-M-I-Jm,
+  .J-Z .J-Z-I-Jm,
+  .aX0 .e5,
+  .oh,
+  .oG,
+  .aBc,
+
+  /* Menu checkmarks and submenu arrows */
+  .J-N-JX.aDE,
+  .J-N .J-N-JX,
+  .J-Ks-KO,
+  .J-Ks-KO-Jw,
+
+  /* Right side panel: the add-on icons are colorful, so only the "+" and arrows flip */
+  .bse-bvF-I-aCk,
+  .brC-aT5-aOt-bsf-Jw,
+  .brC-bsf-aT5-aOt,
+
+  /* The round button that shows/hides the side panel is white with a dark arrow */
+  [aria-label="Show side panel"],
+  [aria-label="Hide side panel"]
+) {
   filter: invert(1) hue-rotate(180deg);
+}
+
+/*
+ * Guard: a wrapper and the icon inside it often both match above (.asa holding a .T-I-J3,
+ * for example). Two inversions cancel out, and a filter on the wrapper also becomes the
+ * positioning box for the icon, which shifts it out of its button. So when one of the
+ * elements that can wrap an icon holds another inverted icon, only the inner one keeps
+ * the filter. Add to both lists here when a new wrapper shows up.
+ */
+:is(
+    .asa,
+    .T-I-J3,
+    .G-tF .T-Jo,
+    .qj,
+    .aeN .T-I-J3,
+    .zA .bqX,
+    .adn .aqx,
+    .ajz,
+    .ajy,
+    .hG,
+    .bjy,
+    .Ha,
+    .Hl,
+    .Hq,
+    .Hk,
+    .btC .J-Z-I,
+    .btC .og,
+    .J-N .J-N-JX,
+    .aoH .aT5-aOt-I-JX-Jw,
+    .FH,
+    .zo,
+    header .gb_Kc,
+    [aria-label="Show side panel"],
+    [aria-label="Hide side panel"]
+  ):has(
+    .asa,
+    .T-I-J3,
+    .T-Jo,
+    .qj,
+    .bqX,
+    .J-JN-M-I-Jm,
+    .J-Z-I-Jm,
+    .J-N-JX,
+    svg
+  ) {
+  filter: none !important;
 }
 
 /* ---------- Toasts and tooltips ---------- */

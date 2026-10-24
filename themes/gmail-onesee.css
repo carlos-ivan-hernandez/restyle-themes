@@ -408,6 +408,16 @@ input[name="q"]::placeholder {
   border-color: var(--onesee-border-muted) !important;
 }
 
+/*
+ * The boxes around the Reply / Forward buttons at the end of a conversation are white,
+ * and their class names vary, so this darkens whatever holds those buttons.
+ */
+div:has(.ams),
+td:has(.ams) {
+  background-color: var(--onesee-bg) !important;
+  background-image: none !important;
+}
+
 /* Subject line */
 .ha h2,
 .hP {
@@ -940,7 +950,8 @@ a,
   .aKe-aLe,
   .aKu-aKy,
 
-  /* Message rows: checkbox, star, importance marker, hover actions, attachment chips */
+  /* Message rows: checkbox, star, importance marker, hover actions, attachment chips,
+     and the paperclip shown when a message has attachments */
   .zA .oZ-jc,
   .zA .T-Jo,
   .zA .T-KT:not(.T-KT-Jp),
@@ -950,6 +961,8 @@ a,
   .zA .bru,
   .zA .brv,
   .zA .aKS,
+  .zA .yE,
+  .zA img[alt="Attachment"],
 
   /* Conversation header: star, reply, more */
   .adn .T-KT:not(.T-KT-Jp),

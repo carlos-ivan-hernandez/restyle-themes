@@ -11,6 +11,12 @@
       "description": "Neutral dark theme for Gmail on a #1c1c1c background.",
       "matches": ["*://mail.google.com/*"],
       "css": "themes/gmail-onesee.css"
+    },
+    {
+      "name": "Amazon-OneSee",
+      "description": "Neutral dark theme for Amazon on a #1c1c1c background.",
+      "matches": ["*://www.amazon.com/*", "*://amazon.com/*"],
+      "css": "themes/amazon-onesee.css"
     }
   ]
 }

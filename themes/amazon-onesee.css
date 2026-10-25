@@ -1,0 +1,1264 @@
+/*
+ * Amazon-OneSee
+ * Neutral dark theme for Amazon (amazon.com) on a #1c1c1c background.
+ * Same palette as Wikipedia-OneSee and Gmail-OneSee.
+ *
+ * Amazon has no color tokens to override. Most of the site is built from its AUI
+ * framework (the "a-" classes: a-box, a-button, a-popover, ...), and the header and
+ * footer from "nav-" classes, so this targets those. Page-specific blocks (search
+ * results, product page, cart, orders) follow.
+ *
+ * Kept as-is on purpose: the yellow "Add to Cart" and orange "Buy Now" buttons, the
+ * orange search button and cart count, red deal badges, star ratings and the Prime logo.
+ * They're bright with dark text, or already readable on a dark page.
+ *
+ * Product photos are mostly white-background JPEGs, so their containers stay light
+ * tiles rather than being darkened.
+ */
+
+/* ---------- Palette ---------- */
+
+:root {
+  --onesee-bg: #1c1c1c;
+  --onesee-bg-raised: #232323;
+  --onesee-bg-raised-2: #2a2a2a;
+  --onesee-bg-hover: #333333;
+  --onesee-bg-active: #3d3d3d;
+  --onesee-border: #5c5c5c;
+  --onesee-border-subtle: #444444;
+  --onesee-border-muted: #333333;
+  --onesee-text: #e3e3e3;
+  --onesee-text-strong: #f5f5f5;
+  --onesee-text-muted: #a8a8a8;
+  --onesee-link: #88a3e8;
+  --onesee-link-hover: #a6bbf5;
+  --onesee-visited: #a799cd;
+  --onesee-accent-bg: #233566;
+  --onesee-accent-bg-hover: #2c4180;
+  --onesee-accent-text: #d6e2ff;
+
+  /* Amazon's status colors, lightened to read on a dark page */
+  --onesee-price: #ff8f70;
+  --onesee-success: #6fcf86;
+  --onesee-state: #f0a35a;
+
+  /* Background behind product photos (Amazon's own light grey) */
+  --onesee-image-tile: #f7f7f7;
+}
+
+/* ---------- Page ---------- */
+
+html,
+body,
+#a-page,
+#pageContent,
+#gw-layout,
+.gw-layout,
+#gw-card-layout,
+#desktop-grid-1,
+#dp,
+#dp-container,
+#ppd,
+#search,
+.s-desktop-width-max,
+.s-desktop-content,
+.s-main-slot,
+.s-matching-dir,
+#sc-retail-cart-container,
+#ordersContainer,
+.your-orders-content-container,
+.a-container,
+#yourOrders,
+#a-page > .a-section {
+  background-color: var(--onesee-bg) !important;
+  background-image: none !important;
+}
+
+:root,
+body {
+  color-scheme: dark !important;
+}
+
+body,
+.a-color-base,
+.a-color-base-background,
+.a-text-normal,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+label,
+legend,
+.a-list-item,
+.a-form-label {
+  color: var(--onesee-text) !important;
+}
+
+.a-text-bold,
+.a-text-emphasis,
+.a-color-base.a-text-bold,
+#productTitle,
+.a-size-extra-large,
+.a-size-large.a-color-base {
+  color: var(--onesee-text-strong) !important;
+}
+
+.a-color-secondary,
+.a-color-tertiary,
+.a-text-quote,
+.a-color-information,
+.a-size-mini.a-color-secondary,
+.a-text-caps {
+  color: var(--onesee-text-muted) !important;
+}
+
+/* Status colors */
+.a-color-price,
+.a-text-price.a-color-price {
+  color: var(--onesee-price) !important;
+}
+
+.a-color-success,
+#availability .a-color-success {
+  color: var(--onesee-success) !important;
+}
+
+.a-color-state,
+.a-color-alternate-background .a-color-state {
+  color: var(--onesee-state) !important;
+}
+
+.a-color-error {
+  color: #ff7a7a !important;
+}
+
+/* Grey "offset" panels: order headers, section headers, table headers */
+.a-color-offset-background,
+.a-color-alternate-background,
+.a-box.a-color-offset-background,
+.a-box.a-color-alternate-background {
+  background-color: var(--onesee-bg-raised-2) !important;
+}
+
+/* ---------- Links ---------- */
+
+a,
+a:link,
+.a-link-normal,
+.a-link-emphasis,
+.a-link-child,
+.a-color-link,
+.a-expander-prompt,
+.a-declarative > a {
+  color: var(--onesee-link) !important;
+}
+
+a:hover,
+.a-link-normal:hover,
+.a-link-emphasis:hover,
+.a-link-child:hover {
+  color: var(--onesee-link-hover) !important;
+}
+
+/* Product titles are links, but Amazon shows them as plain text that turns colored on hover. */
+.s-link-style .a-text-normal,
+h2 a,
+h2 a span,
+h2.a-text-normal,
+.a-link-normal.a-text-normal,
+.a-link-normal .a-color-base,
+.a-link-normal.a-color-base,
+.p13n-sc-truncate,
+.a-cardui a .a-truncate-full,
+.a-cardui a .a-truncate-cut {
+  color: var(--onesee-text) !important;
+}
+
+.s-link-style .a-text-normal:hover,
+h2 a:hover,
+h2 a:hover span,
+.a-link-normal.a-text-normal:hover,
+.a-link-normal:hover .a-color-base {
+  color: var(--onesee-link-hover) !important;
+}
+
+/* ---------- Header ---------- */
+
+#navbar,
+#navbar-main,
+#nav-belt,
+.nav-belt,
+#nav-main,
+.nav-main,
+#nav-subnav,
+#nav-subnav-container,
+#nav-progressive-subnav,
+#nav-xshop-container,
+#navbar-backup-backup {
+  background-color: var(--onesee-bg-raised-2) !important;
+  background-image: none !important;
+}
+
+#nav-main,
+.nav-main,
+#nav-subnav,
+#nav-progressive-subnav {
+  background-color: var(--onesee-bg-raised) !important;
+  border-bottom: 1px solid var(--onesee-border-muted) !important;
+}
+
+#navbar *:not(.nav-search-submit *, #nav-cart-count, .nav-search-submit) {
+  border-color: var(--onesee-border-subtle);
+}
+
+#nav-belt .nav-line-1,
+#nav-belt .nav-line-2,
+#nav-main a,
+#nav-subnav a,
+#nav-subnav .nav-a-content,
+#nav-xshop a,
+.nav-a,
+.nav-a .nav-line-1,
+.nav-a .nav-line-2 {
+  color: var(--onesee-text) !important;
+}
+
+#nav-belt .nav-line-1,
+#glow-ingress-line1 {
+  color: var(--onesee-text-muted) !important;
+}
+
+#nav-main a:hover,
+#nav-subnav a:hover,
+.nav-a:hover {
+  outline-color: var(--onesee-border) !important;
+}
+
+/* Search bar */
+#nav-search-bar-form,
+.nav-search-field,
+.nav-fill .nav-search-field {
+  background-color: var(--onesee-bg-hover) !important;
+  border-color: transparent !important;
+}
+
+#twotabsearchtextbox,
+#nav-search-bar-form input[type="text"],
+.nav-search-field input {
+  background-color: var(--onesee-bg-hover) !important;
+  color: var(--onesee-text) !important;
+}
+
+#twotabsearchtextbox::placeholder {
+  color: var(--onesee-text-muted) !important;
+}
+
+/* The "All" department picker at the left of the search bar */
+.nav-search-scope,
+.nav-search-facade,
+#nav-search-dropdown-card .nav-search-scope {
+  background-color: var(--onesee-bg-active) !important;
+  border-color: var(--onesee-border-subtle) !important;
+}
+
+.nav-search-label,
+#nav-search-label-id,
+.nav-search-facade .nav-search-label {
+  color: var(--onesee-text) !important;
+}
+
+.nav-search-facade .nav-icon {
+  filter: invert(1);
+}
+
+/* Search suggestions dropdown */
+#nav-flyout-searchAjax,
+.autocomplete-results-container,
+.s-suggestion-container,
+.s-suggestion,
+#issDiv {
+  background-color: var(--onesee-bg-raised) !important;
+  color: var(--onesee-text) !important;
+  border-color: var(--onesee-border-subtle) !important;
+}
+
+.s-suggestion,
+.s-suggestion .s-heavy {
+  color: var(--onesee-text-strong) !important;
+}
+
+.s-suggestion .s-known,
+.s-suggestion .s-searchtype {
+  color: var(--onesee-text-muted) !important;
+}
+
+.s-suggestion:hover,
+.s-suggestion-highlighted,
+.s-suggestion-container:hover {
+  background-color: var(--onesee-bg-hover) !important;
+}
+
+/* Header dropdowns: Account & Lists, language, cart */
+.nav-flyout,
+.nav-flyout-content,
+.nav-flyout-body,
+#nav-flyout-accountList,
+#nav-flyout-icp,
+#nav-flyout-ewc,
+#nav-al-container,
+#nav-al-wishlist,
+#nav-al-your-account,
+.nav-flyout-buffer-left,
+.nav-flyout-buffer-right {
+  background-color: var(--onesee-bg-raised) !important;
+  color: var(--onesee-text) !important;
+  border-color: var(--onesee-border-subtle) !important;
+}
+
+.nav-flyout .nav-title,
+.nav-flyout .nav-text,
+#nav-al-title {
+  color: var(--onesee-text-strong) !important;
+}
+
+.nav-flyout .nav-link,
+.nav-flyout .nav-link .nav-text,
+.nav-flyout a {
+  color: var(--onesee-text) !important;
+}
+
+.nav-flyout .nav-link:hover .nav-text,
+.nav-flyout a:hover {
+  color: var(--onesee-link-hover) !important;
+}
+
+/* The little arrow above a flyout is a white image; this dims it to the flyout color. */
+.nav-flyout-tail,
+.nav-arrow {
+  filter: brightness(0.14);
+}
+
+/* "Deliver to" and similar prompts that drop down from the header */
+#nav-signin-tooltip,
+.nav-signin-tt,
+#glow-toaster,
+.glow-toaster {
+  background-color: var(--onesee-bg-raised) !important;
+  color: var(--onesee-text) !important;
+  border-color: var(--onesee-border-subtle) !important;
+}
+
+/* ---------- Side menu (the "All" hamburger) ---------- */
+
+#hmenu-container #hmenu-canvas,
+#hmenu-content,
+.hmenu,
+.hmenu-visible,
+.hmenu-translateX {
+  background-color: var(--onesee-bg-raised) !important;
+}
+
+#hmenu-header,
+#hmenu-customer-profile {
+  background-color: var(--onesee-bg-raised-2) !important;
+  border-bottom: 1px solid var(--onesee-border-muted) !important;
+}
+
+#hmenu-header *,
+#hmenu-customer-name {
+  color: var(--onesee-text-strong) !important;
+}
+
+.hmenu-item,
+.hmenu-item div,
+.hmenu-compressed-btn,
+#hmenu-content a {
+  color: var(--onesee-text) !important;
+}
+
+.hmenu-item:hover,
+.hmenu-compressed-btn:hover {
+  background-color: var(--onesee-bg-hover) !important;
+  color: var(--onesee-text-strong) !important;
+}
+
+.hmenu-title {
+  color: var(--onesee-text-strong) !important;
+}
+
+.hmenu-separator {
+  border-color: var(--onesee-border-subtle) !important;
+  background-color: var(--onesee-border-subtle) !important;
+}
+
+.hmenu-arrow-next,
+.hmenu-arrow-prev,
+.hmenu-arrow-more,
+.hmenu-arrow-less {
+  filter: invert(0.8);
+}
+
+/* ---------- Boxes, cards, sections ---------- */
+
+.a-box,
+.a-box-inner,
+.a-box-group .a-box,
+.a-cardui,
+.a-cardui-body,
+.a-cardui-header,
+.a-cardui-footer,
+.gw-card-layout .a-cardui,
+.single-slot-card,
+.card-flow-row-break,
+.a-tab-content,
+.a-accordion-inner,
+.a-ordered-list.a-vertical .a-box,
+.ya-card,
+.ya-card__whole-card-link,
+.order-card,
+.js-order-card {
+  background-color: var(--onesee-bg-raised) !important;
+  color: var(--onesee-text);
+  border-color: var(--onesee-border-subtle) !important;
+}
+
+/* Inner box layers don't need their own fill. */
+.a-box .a-box-inner,
+.a-cardui .a-cardui-body,
+.a-cardui .a-cardui-header,
+.a-cardui .a-cardui-footer {
+  background-color: transparent !important;
+}
+
+.a-box.a-color-offset-background .a-box-inner,
+.a-box.a-color-alternate-background .a-box-inner {
+  background-color: var(--onesee-bg-raised-2) !important;
+}
+
+/* Dividers */
+hr,
+.a-divider-normal,
+.a-divider-inner,
+.a-divider-section,
+.a-spacing-top-base hr {
+  border-color: var(--onesee-border-subtle) !important;
+  background-image: none !important;
+  background-color: transparent !important;
+}
+
+.a-divider-section .a-divider-inner::after,
+.a-divider-section::before {
+  background: var(--onesee-border-subtle) !important;
+}
+
+.a-divider-break::after {
+  border-color: var(--onesee-border-subtle) !important;
+}
+
+.a-divider-break h5 {
+  background-color: var(--onesee-bg-raised) !important;
+  color: var(--onesee-text-muted) !important;
+}
+
+/* Tabs */
+.a-tab-heading a {
+  background-color: var(--onesee-bg-raised-2) !important;
+  border-color: var(--onesee-border-subtle) !important;
+  color: var(--onesee-text-muted) !important;
+}
+
+.a-tab-heading.a-active a {
+  background-color: var(--onesee-bg-raised) !important;
+  color: var(--onesee-text-strong) !important;
+}
+
+/* Accordions (buying options on product pages, checkout steps) */
+.a-accordion,
+.a-accordion .a-box,
+.a-accordion-row,
+.a-accordion-row-a11y,
+.a-accordion .a-accordion-row-container {
+  background-color: var(--onesee-bg-raised) !important;
+  border-color: var(--onesee-border-subtle) !important;
+}
+
+.a-accordion .a-accordion-active,
+.a-accordion .a-accordion-active .a-accordion-row {
+  background-color: var(--onesee-bg-raised-2) !important;
+}
+
+/* Tables */
+.a-table,
+.a-keyvalue,
+.prodDetTable,
+table.a-bordered,
+.a-bordered td,
+.a-bordered th {
+  border-color: var(--onesee-border-subtle) !important;
+  color: var(--onesee-text);
+}
+
+.a-keyvalue th,
+.prodDetTable th,
+.a-bordered th,
+.a-table th,
+.a-normal tr.a-bordered,
+.prodDetSectionEntry,
+#productDetails_techSpec_section_1 th,
+#productDetails_detailBullets_sections1 th {
+  background-color: var(--onesee-bg-raised-2) !important;
+  color: var(--onesee-text) !important;
+}
+
+.a-keyvalue td,
+.prodDetTable td,
+.a-striped tr:nth-child(odd) td,
+.a-table td {
+  background-color: transparent !important;
+  color: var(--onesee-text) !important;
+  border-color: var(--onesee-border-subtle) !important;
+}
+
+.a-striped tr:nth-child(even) td {
+  background-color: var(--onesee-bg-raised) !important;
+}
+
+/* Alerts: dark inside, the colored border and heading stay */
+.a-alert-container,
+.a-alert-content,
+.a-box.a-alert,
+.a-box.a-alert-info,
+.a-box.a-alert-warning,
+.a-box.a-alert-success,
+.a-box.a-alert-error,
+.a-box.a-alert-tip,
+.a-alert-inline {
+  background-color: var(--onesee-bg-raised) !important;
+  color: var(--onesee-text) !important;
+}
+
+.a-alert-content,
+.a-alert-content span {
+  color: var(--onesee-text) !important;
+}
+
+/* ---------- Buttons ---------- */
+
+/*
+ * Secondary buttons (white with a grey outline) go dark. Yellow primary buttons
+ * (Add to Cart, Proceed to checkout) and the orange Buy Now button keep their color.
+ */
+.a-button:not(
+    .a-button-primary,
+    .a-button-oneclick,
+    .a-button-preorder,
+    .a-button-thumbnail,
+    .a-button-selected
+  ),
+.a-button-base,
+.a-button-normal,
+.a-button-dropdown,
+.a-button-toggle:not(.a-button-selected) {
+  background-color: var(--onesee-bg-raised-2) !important;
+  background-image: none !important;
+  border-color: var(--onesee-border-subtle) !important;
+  box-shadow: none !important;
+}
+
+.a-button:not(
+    .a-button-primary,
+    .a-button-oneclick,
+    .a-button-preorder,
+    .a-button-thumbnail
+  ):hover,
+.a-button-base:hover,
+.a-button-dropdown:hover {
+  background-color: var(--onesee-bg-hover) !important;
+}
+
+.a-button:not(.a-button-primary, .a-button-oneclick, .a-button-preorder)
+  .a-button-inner {
+  background-color: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+.a-button:not(.a-button-primary, .a-button-oneclick, .a-button-preorder)
+  :is(.a-button-text, .a-dropdown-prompt, .a-dropdown-label),
+.a-button-text:not(.a-button-primary .a-button-text, .a-button-oneclick .a-button-text) {
+  color: var(--onesee-text) !important;
+}
+
+/* Selected size/color option keeps Amazon's highlight border. */
+.a-button-selected,
+.a-button-toggle.a-button-selected {
+  background-color: var(--onesee-accent-bg) !important;
+  background-image: none !important;
+}
+
+.a-button-selected .a-button-inner {
+  background: transparent !important;
+}
+
+.a-button-selected .a-button-text,
+.a-button-selected * {
+  color: var(--onesee-accent-text) !important;
+}
+
+/* Bright buttons need their text to stay dark. */
+:is(.a-button-primary, .a-button-oneclick, .a-button-preorder)
+  :is(.a-button-text, .a-button-text *) {
+  color: #0f1111 !important;
+}
+
+/* ---------- Dropdowns, popovers, modals ---------- */
+
+.a-popover,
+.a-popover-wrapper,
+.a-popover-inner,
+.a-popover-header,
+.a-popover-footer,
+.a-popover-dropdown,
+.a-popover-modal,
+.a-dropdown,
+.a-modal-scroller .a-popover,
+.a-sheet-web-container,
+.a-sheet-content {
+  background-color: var(--onesee-bg-raised) !important;
+  color: var(--onesee-text) !important;
+  border-color: var(--onesee-border-subtle) !important;
+}
+
+.a-popover-header {
+  background-color: var(--onesee-bg-raised-2) !important;
+  background-image: none !important;
+  border-bottom-color: var(--onesee-border-subtle) !important;
+}
+
+.a-popover-header-content,
+.a-popover-header .a-popover-header-content {
+  color: var(--onesee-text-strong) !important;
+}
+
+/* Popover arrows are white images too. */
+.a-arrow,
+.a-arrow-border,
+.a-popover-arrow {
+  filter: brightness(0.14);
+}
+
+.a-dropdown-item,
+.a-dropdown-link {
+  color: var(--onesee-text) !important;
+  background-color: transparent !important;
+}
+
+.a-dropdown-item:hover,
+.a-dropdown-link:hover,
+.a-dropdown-link.a-active,
+.a-dropdown-item.a-active,
+.a-dropdown-link:focus {
+  background-color: var(--onesee-bg-hover) !important;
+  color: var(--onesee-text-strong) !important;
+}
+
+/* ---------- Forms ---------- */
+
+input:not([type="checkbox"], [type="radio"], [type="image"], [type="submit"]),
+textarea,
+select,
+.a-input-text,
+.a-native-dropdown,
+.a-search input {
+  background-color: var(--onesee-bg-raised-2) !important;
+  color: var(--onesee-text) !important;
+  border-color: var(--onesee-border-subtle) !important;
+  box-shadow: none !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #8a8a8a !important;
+}
+
+/* The header search field keeps its own color, and the hidden inputs inside AUI buttons stay see-through. */
+#twotabsearchtextbox {
+  background-color: var(--onesee-bg-hover) !important;
+}
+
+.a-button-input {
+  background-color: transparent !important;
+}
+
+/* ---------- Icons ---------- */
+
+/*
+ * AUI icons are sprites drawn in dark grey. These are inverted to light grey; the
+ * hue-rotate keeps the teal check marks close to their own color. Stars, Prime and
+ * other colorful icons are not touched.
+ */
+.a-icon-checkbox,
+.a-icon-radio,
+.a-icon-previous,
+.a-icon-next,
+.a-icon-dropdown,
+.a-icon-popover,
+.a-icon-arrow,
+.a-icon-expand,
+.a-icon-collapse,
+.a-icon-close,
+.a-icon-section-expand,
+.a-icon-section-collapse,
+.a-icon-extender-expand,
+.a-icon-extender-collapse,
+.a-icon-search,
+.a-icon-text-separator,
+.a-icon-share-sms,
+.a-icon-share-email,
+.a-icon-share-link,
+.a-icon-logo,
+.a-icon-chevron,
+.a-icon-chevron-left,
+.a-icon-chevron-right,
+.a-carousel-goto-prevpage .a-icon,
+.a-carousel-goto-nextpage .a-icon,
+.a-button-close .a-icon {
+  filter: invert(1) hue-rotate(180deg);
+}
+
+/* ---------- Product photos ---------- */
+
+/*
+ * Amazon blends many product photos into a light grey tile with mix-blend-mode:
+ * multiply. On a dark card that blend would turn the photos nearly black, so the tiles
+ * stay light and photos sitting directly on dark cards stop blending.
+ */
+.s-product-image-container,
+.s-image-padding,
+.s-image-square-aspect,
+.s-image-fixed-height,
+.s-image-tall-aspect,
+.puis-image-container,
+.imgTagWrapper,
+#imgTagWrapperId,
+#altImages .a-button-thumbnail .a-button-inner,
+.a-dynamic-image-container,
+.p13n-sc-uncoverable-faceout img,
+.a-carousel-card .a-image-wrapper,
+.sc-product-image,
+.sc-product-image-desktop {
+  background-color: var(--onesee-image-tile) !important;
+  border-radius: 4px;
+}
+
+.a-cardui img,
+.gw-card-layout img,
+.a-carousel-card img,
+#gw-desktop-herotator img,
+.a-box img,
+.order-card img,
+.yohtmlc-item img {
+  mix-blend-mode: normal !important;
+}
+
+/* ---------- Homepage ---------- */
+
+.gw-card-layout .a-cardui,
+#desktop-grid-1 .a-cardui,
+.gw-col .a-cardui {
+  background-color: var(--onesee-bg-raised) !important;
+  box-shadow: none !important;
+}
+
+.gw-card-layout .a-cardui-header h2,
+.a-cardui-header h2,
+.a-cardui .a-size-base-plus,
+.a-cardui .a-color-base {
+  color: var(--onesee-text-strong) !important;
+}
+
+/* The light fade at the bottom of the big hero banner */
+#gw-desktop-herotator .a-carousel-viewport::after,
+#desktop-banner::after,
+.gw-hero-gradient {
+  background: linear-gradient(to bottom, transparent, var(--onesee-bg)) !important;
+}
+
+/* "Sign in for the best experience" box */
+#gw-sign-in-card,
+.gw-sign-in-card,
+#nav-signin-tooltip .nav-signin-tooltip-footer {
+  background-color: var(--onesee-bg-raised) !important;
+}
+
+/* ---------- Search results ---------- */
+
+.s-result-item,
+.s-widget-container,
+.s-card-container,
+.puis-card-container,
+.sg-col-inner,
+.s-include-content-margin,
+.s-latency-cf-section,
+.s-shopping-adviser,
+.s-widget {
+  background-color: transparent !important;
+  color: var(--onesee-text);
+  border-color: var(--onesee-border-muted) !important;
+}
+
+/* Results shown as bordered cards */
+.s-card-border,
+.s-card-container.s-card-border,
+.puis-card-border {
+  background-color: var(--onesee-bg-raised) !important;
+  border-color: var(--onesee-border-subtle) !important;
+}
+
+/* Left filter column */
+#s-refinements,
+.s-refinements,
+#s-refinements .a-section,
+.s-navigation-item,
+.s-navigation-indent-1,
+.s-navigation-indent-2 {
+  background-color: transparent !important;
+  color: var(--onesee-text) !important;
+}
+
+#s-refinements .a-text-bold,
+#s-refinements .a-size-base.a-color-base {
+  color: var(--onesee-text-strong) !important;
+}
+
+#s-refinements .a-link-normal .a-size-base,
+.s-navigation-item .a-size-base {
+  color: var(--onesee-text) !important;
+}
+
+/* Results count / sort bar */
+.s-breadcrumb,
+.s-desktop-toolbar,
+.sg-col-14-of-20.s-breadcrumb,
+.s-breadcrumb .a-section {
+  background-color: var(--onesee-bg) !important;
+  border-color: var(--onesee-border-muted) !important;
+  box-shadow: none !important;
+}
+
+/* "Sponsored" label and small grey text under results */
+.puis-sponsored-label-text,
+.s-label-popover-default,
+.s-label-popover-hover .a-color-secondary {
+  color: var(--onesee-text-muted) !important;
+}
+
+/* Pagination */
+.s-pagination-strip,
+.s-pagination-container {
+  background-color: transparent !important;
+}
+
+.s-pagination-item {
+  background-color: transparent !important;
+  color: var(--onesee-text) !important;
+  border-color: var(--onesee-border-subtle) !important;
+}
+
+.s-pagination-item.s-pagination-selected {
+  background-color: var(--onesee-bg-hover) !important;
+  border-color: var(--onesee-border) !important;
+  color: var(--onesee-text-strong) !important;
+}
+
+.s-pagination-item.s-pagination-disabled {
+  color: var(--onesee-text-muted) !important;
+}
+
+.s-pagination-item:not(.s-pagination-disabled):hover {
+  background-color: var(--onesee-bg-hover) !important;
+}
+
+/* ---------- Prices ---------- */
+
+.a-price,
+.a-price .a-price-whole,
+.a-price .a-price-fraction,
+.a-price .a-price-symbol,
+.a-price .a-price-decimal,
+.priceToPay,
+.apexPriceToPay {
+  color: var(--onesee-text-strong) !important;
+}
+
+.a-price[data-a-color="price"],
+.a-price[data-a-color="price"] * {
+  color: var(--onesee-price) !important;
+}
+
+.a-price[data-a-color="secondary"],
+.a-price[data-a-color="secondary"] *,
+.a-text-price,
+.a-text-price *,
+.basisPrice,
+.basisPrice * {
+  color: var(--onesee-text-muted) !important;
+}
+
+/* Savings percentage ("-23%") */
+.savingsPercentage,
+.reinventPriceSavingsPercentageMargin {
+  color: var(--onesee-price) !important;
+}
+
+/* ---------- Product page ---------- */
+
+#centerCol,
+#rightCol,
+#leftCol,
+#dp-container > div,
+#ppd > div,
+#desktop_buybox,
+#buybox,
+#buybox .a-box,
+#qualifiedBuybox,
+#newAccordionRow,
+#usedAccordionRow,
+#exports_desktop_qualifiedBuybox,
+#offerDisplayFeatures_desktop,
+#corePrice_feature_div,
+#corePriceDisplay_desktop_feature_div,
+#feature-bullets,
+#productOverview_feature_div,
+#productDescription,
+#productDetails_feature_div,
+#detailBullets_feature_div,
+#prodDetails,
+#descriptionAndDetails,
+#important-information,
+#poExpander {
+  background-color: transparent !important;
+  color: var(--onesee-text);
+  border-color: var(--onesee-border-subtle) !important;
+}
+
+/* The buy box keeps its outline, with a raised fill. */
+#buybox .a-box,
+#desktop_buybox .a-box,
+#qualifiedBuybox,
+#buybox-see-all-buying-choices,
+#unqualifiedBuyBox {
+  background-color: var(--onesee-bg-raised) !important;
+}
+
+#feature-bullets li,
+#feature-bullets .a-list-item,
+#productDescription p,
+#productDescription span,
+#detailBullets_feature_div li span,
+#productOverview_feature_div td span,
+.po-attribute-name,
+.po-break-word {
+  color: var(--onesee-text) !important;
+}
+
+#detailBullets_feature_div .a-text-bold,
+.po-attribute-name .a-text-bold {
+  color: var(--onesee-text-strong) !important;
+}
+
+/* Breadcrumbs above the product */
+#wayfinding-breadcrumbs_feature_div,
+#wayfinding-breadcrumbs_feature_div a {
+  color: var(--onesee-text-muted) !important;
+}
+
+/* Size, color and style pickers */
+#twister,
+#twister .a-row,
+.twisterSwatchWrapper,
+.swatchAvailable,
+.swatchUnavailable,
+.inline-twister-swatch,
+.inline-twister-row {
+  background-color: transparent !important;
+  color: var(--onesee-text) !important;
+}
+
+#twister .swatchAvailable .a-button,
+.inline-twister-swatch .a-button {
+  background-color: var(--onesee-bg-raised-2) !important;
+}
+
+.swatchUnavailable .a-button {
+  opacity: 0.55;
+}
+
+/*
+ * Brand content ("From the manufacturer"): mostly images with text. Plain text goes
+ * light; modules that set their own background keep it, with dark text, like the
+ * light boxes in the Gmail theme.
+ */
+#aplus,
+#aplus_feature_div,
+#aplus3p_feature_div,
+.aplus-v2,
+.aplus-module,
+.aplus-module-wrapper,
+.aplus-standard,
+.celwidget .aplus-v2 {
+  background-color: transparent !important;
+  color: var(--onesee-text) !important;
+}
+
+.aplus-v2 :is(p, li, h1, h2, h3, h4, h5, span, td, th):not([style*="color"]) {
+  color: var(--onesee-text);
+}
+
+.aplus-v2 :is(.apm-tablemodule-keyhead, .apm-tablemodule-valuecell, th, td) {
+  background-color: transparent !important;
+  border-color: var(--onesee-border-subtle) !important;
+}
+
+.aplus-v2
+  :where([style*="background-color"]:not([style*="transparent"], [style*="inherit"])),
+.aplus-v2 :where([bgcolor]) {
+  color: #0f1111;
+}
+
+.aplus-v2
+  :where([style*="background-color"]:not([style*="transparent"], [style*="inherit"]))
+  :is(p, li, h1, h2, h3, h4, h5, span) {
+  color: #0f1111 !important;
+}
+
+/* ---------- Reviews ---------- */
+
+#reviewsMedley,
+#customerReviews,
+#cm-cr-dp-review-list,
+#cm_cr-review_list,
+.review,
+.a-section.review,
+.cr-widget-FocalReviews,
+#cr-product-insights-cards,
+#product-summary,
+.cr-lighthouse-terms {
+  background-color: transparent !important;
+  color: var(--onesee-text) !important;
+  border-color: var(--onesee-border-muted) !important;
+}
+
+.review-text,
+.review-text-content,
+.review-text-content span,
+.review-title,
+.review-title span,
+.a-profile-name,
+[data-hook="review-body"] span,
+[data-hook="review-title"] span {
+  color: var(--onesee-text) !important;
+}
+
+.review-title,
+[data-hook="review-title"],
+[data-hook="review-title"] span {
+  color: var(--onesee-text-strong) !important;
+}
+
+.review-date,
+[data-hook="review-date"],
+[data-hook="helpful-vote-statement"],
+.cr-vote-text {
+  color: var(--onesee-text-muted) !important;
+}
+
+/* Star breakdown bars: the orange fill stays, the empty track goes dark. */
+.a-meter,
+.a-histogram .a-meter {
+  background-color: var(--onesee-bg-hover) !important;
+  background-image: none !important;
+  border-color: var(--onesee-border-subtle) !important;
+  box-shadow: none !important;
+}
+
+/* "Customers say" summary chips */
+.cr-lighthouse-term,
+#cr-product-insights-cards .a-button {
+  background-color: var(--onesee-bg-raised-2) !important;
+  color: var(--onesee-text) !important;
+  border-color: var(--onesee-border-subtle) !important;
+}
+
+/* ---------- Carousels (related items, "customers also bought") ---------- */
+
+.a-carousel-container,
+.a-carousel-row,
+.a-carousel-card,
+.a-carousel-viewport,
+.a-carousel-header-row,
+.p13n-sc-uncoverable-faceout,
+.p13n-desktop-carousel,
+.zg-carousel-general-faceout {
+  background-color: transparent !important;
+  color: var(--onesee-text);
+}
+
+.a-carousel-page-count,
+.a-carousel-pagination {
+  color: var(--onesee-text-muted) !important;
+}
+
+/* ---------- Cart ---------- */
+
+#sc-active-cart,
+#sc-saved-cart,
+#sc-buy-box,
+#sc-retail-cart-container .a-cardui,
+.sc-list-item,
+.sc-list-item-border,
+#sc-new-upsell,
+#sc-cart-proceed-to-checkout,
+.sc-your-amazon-cart-is-empty,
+#nav-flyout-ewc .ewc-item {
+  background-color: var(--onesee-bg-raised) !important;
+  color: var(--onesee-text) !important;
+  border-color: var(--onesee-border-subtle) !important;
+}
+
+.sc-list-item-content,
+.sc-item-content-group,
+.sc-product-title,
+.sc-product-title .a-truncate-full,
+.sc-product-title .a-truncate-cut {
+  color: var(--onesee-text) !important;
+}
+
+/* The side cart that slides in on the right */
+#ewc-content,
+.ewc-content,
+#nav-flyout-ewc .nav-flyout-body {
+  background-color: var(--onesee-bg-raised) !important;
+  border-color: var(--onesee-border-subtle) !important;
+}
+
+/* ---------- Orders and Your Account ---------- */
+
+.order-header,
+.a-box.order-header,
+.order-card .a-box:first-child {
+  background-color: var(--onesee-bg-raised-2) !important;
+  color: var(--onesee-text) !important;
+}
+
+.order-header .a-color-secondary,
+.order-header .a-size-mini {
+  color: var(--onesee-text-muted) !important;
+}
+
+.ya-card--rich,
+.ya-card__heading--rich,
+.ya-personalized-sections,
+#ya-myab-display-address-block {
+  background-color: var(--onesee-bg-raised) !important;
+  color: var(--onesee-text) !important;
+  border-color: var(--onesee-border-subtle) !important;
+}
+
+/* ---------- Footer ---------- */
+
+#navFooter,
+.navLeftFooter,
+#navFooter .navFooterVerticalColumn,
+.navFooterVerticalRow,
+.navFooterLine,
+.navFooterMoreOnAmazon,
+#navFooter .navFooterDescLine,
+.nav-footer-line,
+#rhf,
+.rhf-frame,
+#rhf-container {
+  background-color: var(--onesee-bg-raised) !important;
+  color: var(--onesee-text) !important;
+  border-color: var(--onesee-border-muted) !important;
+}
+
+#navBackToTop,
+.navFooterBackToTop,
+.navFooterBackToTopText {
+  background-color: var(--onesee-bg-hover) !important;
+  color: var(--onesee-text) !important;
+}
+
+#navBackToTop:hover .navFooterBackToTop {
+  background-color: var(--onesee-bg-active) !important;
+}
+
+/* The bottom strip with the service links (AbeBooks, Audible, ...) */
+.navFooterMoreOnAmazon,
+#navFooter > .navFooterLine:last-child,
+.navFooterDescLine,
+.navFooterCopyright {
+  background-color: var(--onesee-bg) !important;
+}
+
+#navFooter a,
+.navFooterLinkCol a,
+.navFooterDescItem a,
+.navFooterDescText,
+.navFooterMoreOnAmazon a {
+  color: var(--onesee-text-muted) !important;
+}
+
+#navFooter a:hover,
+.navFooterLinkCol a:hover {
+  color: var(--onesee-text-strong) !important;
+}
+
+.navFooterColHead {
+  color: var(--onesee-text-strong) !important;
+}
+
+/* Language and country pickers in the footer */
+.icp-button,
+.icp-button.icp-button-flex {
+  background-color: transparent !important;
+  border-color: var(--onesee-border) !important;
+  color: var(--onesee-text) !important;
+}
+
+/* "Your browsing history" strip above the footer */
+#rhf .rhf-border,
+#rhf .rhf-header,
+.rhf-sign-in-button {
+  background-color: var(--onesee-bg-raised) !important;
+  border-color: var(--onesee-border-muted) !important;
+}
+
+/* ---------- Scrollbars ---------- */
+
+html,
+* {
+  scrollbar-color: #4a4a4a transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #4a4a4a !important;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #5c5c5c !important;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent !important;
+}
+
+/* ---------- Selection ---------- */
+
+::selection {
+  background: #3056a9;
+  color: #fff;
+}

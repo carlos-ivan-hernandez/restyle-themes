@@ -17,6 +17,12 @@
       "description": "Neutral dark theme for Amazon on a #1c1c1c background.",
       "matches": ["*://www.amazon.com/*", "*://amazon.com/*"],
       "css": "themes/amazon-onesee.css"
+    },
+    {
+      "name": "SketchUp-OneSee",
+      "description": "Neutral dark theme for SketchUp for Web on a #1c1c1c background.",
+      "matches": ["*://app.sketchup.com/*"],
+      "css": "themes/sketchup-onesee.css"
     }
   ]
 }

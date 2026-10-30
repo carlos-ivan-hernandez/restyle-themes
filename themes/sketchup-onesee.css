@@ -1,0 +1,89 @@
+/*
+ * SketchUp-OneSee
+ * Neutral dark theme for SketchUp for Web (app.sketchup.com) on a #1c1c1c background.
+ * Same palette as the other OneSee themes.
+ *
+ * How it works
+ * ------------
+ * SketchUp's app sits behind a sign-in and its class names are generated, so instead of
+ * recoloring elements one by one, this inverts the whole page and then flips the things
+ * that must keep their true colors back again.
+ *
+ * invert(0.89) lands on the OneSee palette by itself:
+ *   white  #ffffff -> #1c1c1c (background)
+ *   black  #000000 -> #e3e3e3 (text)
+ * hue-rotate(180deg) keeps colored accents (blue buttons, red/green/blue axes in icons)
+ * close to their original hue.
+ *
+ * Flipped back to true colors: the 3D viewport and any other <canvas> (color pickers),
+ * images, video, iframes, inline background images (thumbnails, avatars, gradients) and
+ * inline background colors (material, tag and style swatches).
+ *
+ * The "restore" filter is the exact inverse of the page filter, so restored content
+ * looks as it would without the theme, except that its extremes are softened: pure white
+ * shows as #e3e3e3 and pure black as #1c1c1c. In the viewport that means the default
+ * white sky reads as light grey instead of glaring white.
+ *
+ *   page:    x -> 0.89 - 0.78x               invert(0.89)
+ *   restore: x -> 1.141 - 1.282x             invert(1) contrast(1.282)
+ *   both:    x -> x
+ */
+
+/* ---------- Page ---------- */
+
+html {
+  /* Native controls and scrollbars stay light so they come out dark after inverting. */
+  color-scheme: light !important;
+  background-color: #ffffff !important;
+  filter: invert(0.89) hue-rotate(180deg) !important;
+}
+
+body {
+  background-color: #ffffff !important;
+}
+
+/* ---------- Keep true colors ---------- */
+
+canvas,
+img,
+video,
+picture,
+iframe,
+embed,
+object,
+svg image,
+[style*="background-image:"],
+[style*="background-image :"],
+[style*="background: url"],
+[style*="background:url"],
+[style*="background-color: rgb"],
+[style*="background-color:rgb"],
+[style*="background-color: #"],
+[style*="background-color:#"],
+[style*="background: rgb"],
+[style*="background:rgb"],
+[style*="background: #"],
+[style*="background:#"] {
+  filter: invert(1) hue-rotate(180deg) contrast(1.282) !important;
+}
+
+/* Don't flip twice when a restored element sits inside another one. */
+picture img,
+picture source,
+[style*="background-image:"] img,
+[style*="background-image:"] canvas,
+[style*="background-color: rgb"] img,
+[style*="background-color:rgb"] img,
+[style*="background-color: #"] img,
+[style*="background-color:#"] img {
+  filter: none !important;
+}
+
+/* Inline SVG icons are not restored: dark icons should turn light like the text. */
+
+/* ---------- Details ---------- */
+
+/* Black text shadows would invert into light halos around the text. */
+* {
+  text-shadow: none !important;
+}
